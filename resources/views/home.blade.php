@@ -1,4 +1,4 @@
-@extends('Layouts.header')
+@extends('layouts.header')
 @section('title')
     Home page
     @endsection
@@ -6,7 +6,7 @@
 <div class="container-fluid px-1 py-5 mx-auto">
     <div class="row d-flex justify-content-center">
         <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
-            @include('Layouts.navigation-links')
+            @include('layouts.navigation-links')
             <h3>Adding json report</h3>
             <p class="blue-text">Please paste here your token and json<br> so that we can personalize you and save the info.</p>
             <div class="card">
@@ -53,4 +53,4 @@
         </div>
     </div>
 </div>
-@include('Layouts.footer')
+@include('layouts.footer')

@@ -1,4 +1,4 @@
-@extends('Layouts.header')
+@extends('layouts.header')
 @section('title')
     View all reports
 @endsection
@@ -25,7 +25,7 @@
 <div class="container-fluid px-1 py-5 mx-auto">
     <div class="row d-flex justify-content-center">
         <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
-            @include('Layouts.navigation-links')
+            @include('layouts.navigation-links')
 
             <h3>View all json reports</h3>
             <p class="blue-text">You can view here all json reports<br>Also you can delete them , if you want to update/add one -> go to links under.</p>
@@ -46,4 +46,4 @@
                           </div>
         </div>
     </div>
-@include('Layouts.footer')
+@include('layouts.footer')
