@@ -17,7 +17,8 @@ Route::pattern('id', '[0-9]+');
 
 Route::get('/',[\App\Http\Controllers\Home\HomePageController::class,'view'])->name('view-home-page');
 Route::get('/view-update-json-report',[JsonReportController::class,'viewUpdate'])->name('view-update-json-report');
-
+Route::get('/admin/view-reports',[JsonReportController::class,'view'])->name('view-reports');
+Route::get('/delete-json-report/{id}',[JsonReportController::class,'delete'])->name('delete');
 Route::get('/login', function () {
     return view('home',['method'=>'post']);
 })->name('login');

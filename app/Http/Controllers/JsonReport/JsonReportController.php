@@ -4,12 +4,10 @@ namespace App\Http\Controllers\JsonReport;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\JsonEvalService;
+use App\Http\Services\JsonToListService;
 use App\Http\Services\LaravelPassportTokenService;
 use App\Models\JsonReport;
-use Exception;
-use GuzzleHttp\Client;
 use Illuminate\Http\Request;
-use Psr\Log\InvalidArgumentException;
 
 
 class JsonReportController extends Controller
@@ -18,19 +16,27 @@ class JsonReportController extends Controller
      * @var LaravelPassportTokenService
      */
     private $laravelPassportTokenService;
+
     /**
      * @var
      */
     private $jsonEvalService;
 
     /**
+     * @var JsonToListService
+     */
+    private JsonToListService $jsonToListService;
+
+    /**
      * @param LaravelPassportTokenService $laravelPassportTokenService
      * @param JsonEvalService $jsonEvalService
+     * @param JsonToListService $jsonToListService
      */
-    public function __construct(LaravelPassportTokenService $laravelPassportTokenService,JsonEvalService $jsonEvalService)
+    public function __construct(LaravelPassportTokenService $laravelPassportTokenService, JsonEvalService $jsonEvalService, JsonToListService $jsonToListService)
     {
         $this->laravelPassportTokenService = $laravelPassportTokenService;
         $this->jsonEvalService = $jsonEvalService;
+        $this->jsonToListService = $jsonToListService;
     }
 
     /**
@@ -78,12 +84,38 @@ class JsonReportController extends Controller
                 return back()->withErrors(['notOwner' => 'Not your report']);
             }
             $data = json_decode($jsonReport->json_form);
-            $updatedData = $this->jsonEvalService->updateJsonInstructions($request->instructions,$data);
+            $updatedData = $this->jsonEvalService->updateJsonInstructions($request->instructions, $data);
             $jsonReport->update(['json_form' => $updatedData]);
             $jsonReport->save();
-            return response()->json(['jsonReportId'=>$jsonReport->id]);
+            return response()->json(['jsonReportId' => $jsonReport->id]);
         } else {
             return response()->json($response->getData(), 401);
         }
     }
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    function view()
+    {
+        $jsonData = JsonReport::all()->pluck('json_form','id');
+        $htmlArr=[];
+        foreach($jsonData as $key => $value){
+            $html = $this->jsonToListService->jsonToList($value);
+
+            $htmlArr[$key] = $html;
+        }
+        return view('JsonScripts.view-json-reports-all', ['htmlArr' => $htmlArr, 'jsonData' => $jsonData]);
+    }
+
+    /**
+     * @param $jsonReportId
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    function delete($jsonReportId){
+        $jsonData=JsonReport::findOrFail($jsonReportId);
+        $jsonData->delete();
+        return back()->with(['success'=>'Successfully deleted json report']);
+    }
+
 }
