@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JsonReport\JsonReportController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,7 +13,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::pattern('id', '[0-9]+');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[\App\Http\Controllers\Home\HomePageController::class,'view'])->name('view-home-page');
+Route::get('/view-update-json-report',[JsonReportController::class,'viewUpdate'])->name('view-update-json-report');
+
+Route::get('/login', function () {
+    return view('home',['method'=>'post']);
+})->name('login');
+

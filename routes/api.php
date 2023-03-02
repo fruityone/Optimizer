@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\JsonReport\JsonReportController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -13,7 +15,17 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::pattern('id', '[0-9]+');
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::post('login',[AuthController::class,'login']);
+Route::match(['get','post'],'/post-json-report',[JsonReportController::class,'save'])->name('save-json-report');
+Route::match(['get','post'],'/update-json-report',[JsonReportController::class,'update'])->name('update-json-report');
+Route::middleware('auth:api')->group(function(){
+    Route::get('/user',function(Request $request){
+        return $request->user();
+    })->name('user');
 });
+//
+//Route::middleware('auth:api')->group(function(){
+//
+//});
