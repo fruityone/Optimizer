@@ -37,10 +37,6 @@ class AuthCommand extends Command
             // Generate a token
             $token = Auth::user()->createToken('Token')->accessToken;
             // Save the token to the user's session
-            session(['auth_token' => $token]);
-
-            // Set the token expiration time
-            session(['auth_token_expires_at' => now()->addMinutes(5)]);
 
             $this->info("Token: $token");
             // BE CAREFUL WITH THIS TOKEN, IN MY PHPSTORM I COULD NOT COPY IT IN ONE LINE, SO MAKE SURE IT IS COPIED IN ONE LINE

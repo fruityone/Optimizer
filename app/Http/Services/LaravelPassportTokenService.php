@@ -21,7 +21,7 @@ class LaravelPassportTokenService
     function tokenResponse($token)
     {
         try {
-            $response = $this->client->get('http://localhost:8001/api/user', [
+            $response = $this->client->get(route('user'), [
                 'headers' => [
                     'Accept' => 'application/json',
                     'Authorization' => 'Bearer ' . $token,
