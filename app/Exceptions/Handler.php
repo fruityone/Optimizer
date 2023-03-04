@@ -3,6 +3,8 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Exceptions\ThrottleRequestsException;
+use Illuminate\Routing\Middleware\ThrottleRequests;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -46,5 +48,13 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    public function render($request, Throwable $e)
+    {
+if ($e instanceof ThrottleRequestsException){
+    return response()->json(['message'=>'Too many requests'],429);
+}
+    return parent::render($request,$e);
     }
 }
