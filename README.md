@@ -47,7 +47,7 @@ Restart Nginx to apply the changes:
 
     sudo systemctl restart nginx
 <h3>Stop 4 Configure Laravel</h3>
-Configure your laravel project settings and use .env.example to change database connections. 
+Configure your laravel project settings and use .env.example to change database credentials. 
 
     composer install
     php artisan key:generate
@@ -57,3 +57,9 @@ After this, check Laravel Passport installed and run
     php artisan passport:keys
     php artisan passport:install
     php artisan optimize:clear
+Run the seeder to seed the users  DB
+
+     php  artisan db:seed --class=DatabaseSeeder
+Now you are free to get Laravel passport token , by default every user password is "password" 
+    
+     php artisan user:auth <dbseededusername> password
