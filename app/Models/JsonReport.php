@@ -9,8 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class JsonReport extends Model
 {
     use HasFactory, SoftDeletes;
-    protected $guarded =[];
-    public function user(){
+
+    protected $guarded = [];
+
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 }

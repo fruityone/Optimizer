@@ -14,8 +14,9 @@ class LaravelPassportTokenService
     /**
      * @param Client $client
      */
-    public function __construct(Client $client){
-        $this->client=$client;
+    public function __construct(Client $client)
+    {
+        $this->client = $client;
     }
 
     function tokenResponse($token)
@@ -39,7 +40,7 @@ class LaravelPassportTokenService
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()]);
         }
-            return $response->withStatus(200);
+        return $response->withStatus(200);
     }
 }
 

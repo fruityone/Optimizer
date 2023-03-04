@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\Console\Commands;
+namespace Tests\Unit;
 
 use App\Console\Commands\AuthCommand;
 use App\Models\User;

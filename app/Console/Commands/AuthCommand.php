@@ -36,8 +36,6 @@ class AuthCommand extends Command
         if (Auth::attempt(['username' => $username, 'password' => $password])) {
             // Generate a token
             $token = Auth::user()->createToken('Token')->accessToken;
-            // Save the token to the user's session
-
             $this->info("Token: $token");
             // BE CAREFUL WITH THIS TOKEN, IN MY PHPSTORM I COULD NOT COPY IT IN ONE LINE, SO MAKE SURE IT IS COPIED IN ONE LINE
         } else {

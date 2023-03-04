@@ -9,7 +9,7 @@ class JsonEvalService
      * @param $data
      * @return false|string
      */
-    function updateJsonInstructions($instructions,$data)
+    function updateJsonInstructions($instructions, $data)
     {
 //      $data->data[0]->sd=1; example
         $instructionArray = explode(';', $instructions);
@@ -19,4 +19,5 @@ class JsonEvalService
         return json_encode($data);
     }
 }
+
 ?>

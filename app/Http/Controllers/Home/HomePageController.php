@@ -10,8 +10,9 @@ class HomePageController extends Controller
     /**
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    function view(){
-        $method='post';
-        return view('home',['method'=>$method]);
+    function view()
+    {
+        $method = 'post';
+        return view('home', ['method' => $method]);
     }
 }

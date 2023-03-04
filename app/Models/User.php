@@ -46,7 +46,8 @@ class User extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function jsonReports(){
-       return $this->hasMany(JsonReport::class);
+    public function jsonReports()
+    {
+        return $this->hasMany(JsonReport::class);
     }
 }
