@@ -49,9 +49,11 @@ Restart Nginx to apply the changes:
 <h3>Stop 4 Configure Laravel</h3>
 Configure your laravel project settings and use .env.example to change database connections. 
 
-    php artisan key:generate
     composer install
+    php artisan key:generate
 After this, check Laravel Passport installed and run
     
     php artisan migrate
     php artisan passport:keys
+    php artisan passport:install
+    php artisan optimize:clear
