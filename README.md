@@ -55,11 +55,11 @@ After this, check Laravel Passport installed and run
     
     php artisan migrate
     php artisan passport:keys
-    php artisan passport:install
     php artisan optimize:clear
 Run the seeder to seed the users  DB
 
      php  artisan db:seed --class=DatabaseSeeder
+     php artisan passport:install
 Now you are free to get Laravel passport token , by default every user password is "password" 
     
      php artisan user:auth <dbseededusername> password
