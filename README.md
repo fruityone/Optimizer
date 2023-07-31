@@ -1,5 +1,5 @@
 ## About Project
-Project functionality info link : https://docs.google.com/document/d/1jUofI2dRnNfPWhsz2mQ9TwG8nafTD5YghNRwY4QXumE/view
+<h3> Project functionality info link : https://docs.google.com/document/d/1jUofI2dRnNfPWhsz2mQ9TwG8nafTD5YghNRwY4QXumE/view </h3>.
 Project is considered as json report handling functionality with CRUD (create,read,update,delete) module. 
 Used - [Laravel Passport](https://laravel.com/docs/10.x/passport) auth system to detect update / adding events.
 Laravel passport generated token is active for 5 minutes (can be changed depending on needs). This token allows to check and find already registered user
